@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@angular/fire": "^7.3.0",
+    "@angular/material": "^13.3.8",
+    "@azure/storage-blob": "^12.10.0",
+    "file-saver": "^2.0.5",
+    "firebase": "^9.8.2",
+    "jszip": "^3.10.0",
+    "jszip-utils": "^0.1.0"
+  },
+  "devDependencies": {
+    "@stencil/angular-output-target": "^0.4.0"
+  }
+}

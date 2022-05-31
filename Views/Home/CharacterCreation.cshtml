@@ -1,0 +1,32 @@
+@model CharacterModel
+
+@{
+    ViewData["Title"] = "Character Creation";
+}
+
+<div class="col-md-6 offset-md-3">
+    <div class="card card-body bg-light">
+        <h3>Character Creation</h3>
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Handle"> Handle: </label>
+                <input asp-for="Handle" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName"> First Name: </label>
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName"> Last Name: </label>
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Main"> Main: </label>
+                <input asp-for="Main" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" asp-page-handler="" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>

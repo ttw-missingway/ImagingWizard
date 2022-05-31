@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fightnightstorage": {
+      "hosting": {
+        "client": [
+          "fightnightstorage"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fightnightstorage"
+  }
+}

@@ -1,0 +1,47 @@
+@model IEnumerable<CharacterModel>
+
+@section Scripts{
+    <script src="~/client/runtime.js"></script>
+    <script src="~/client/polyfills.js"></script>
+    <script src="~/client/main.js" asp-append-version="true"></script>
+}
+
+@section head{
+    <link href="~/client/styles.css" rel="stylesheet" />
+}
+
+@{
+    ViewData["Title"] = "Characters";
+    string[] TableHeaders = new string[] {
+        "Handle",
+        "Name",
+        "Main"
+    };
+}
+
+<the-roster></the-roster>
+
+@* <div class="table">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                @foreach(var h in TableHeaders){
+                    <th>
+                        @h
+                    </th>
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var c in Model){
+                <tr>
+                    <td>@c.Handle</td>
+                    <td>@c.FirstName @c.LastName</td>
+                    <td>@c.Main</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  *@
+
