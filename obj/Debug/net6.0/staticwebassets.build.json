@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ybKQSmPhrbMh1GigXi5Hg6oswbLeElXZHr5vsCFrHvU=",
+  "Hash": "VBDgXUGrp3QH4hW2BYP/JChF1J4xxR1nKIWHyCt2aVE=",
   "Source": "FightNight",
   "BasePath": "_content/FightNight",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/missingway/Desktop/FightNight/obj/Debug/net6.0/scopedcss/projectbundle/FightNight.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/missingway/Desktop/FightNight/wwwroot/.DS_Store",
+      "SourceId": "FightNight",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/missingway/Desktop/FightNight/wwwroot/",
+      "BasePath": "_content/FightNight",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
     },
     {
       "Identity": "/Users/missingway/Desktop/FightNight/wwwroot/client/3rdpartylicenses.txt",

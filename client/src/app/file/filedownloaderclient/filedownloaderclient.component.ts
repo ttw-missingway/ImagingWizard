@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as JSZip from 'jszip'; 
 import * as FileSaver from 'file-saver'
 import { Roster } from 'src/app/services/roster.service';
-import { ICharacter } from 'src/app/shared/character';
-import { HttpHeaders } from '@angular/common/http';
+import { IInstrument } from 'src/app/shared/instrument';
 
 const JSZipUtils = require('jszip-utils');
 
@@ -12,7 +11,7 @@ const JSZipUtils = require('jszip-utils');
   templateUrl: 'filedownloaderclient.component.html',
 })
 export class FiledownloaderclientComponent implements OnInit {
-  characters: ICharacter[] | undefined;
+  instruments: IInstrument[] | undefined;
   errorMessage: string = "error!";
   imageWidth: number = 20;
   imageMargin: number = 2;
@@ -20,54 +19,70 @@ export class FiledownloaderclientComponent implements OnInit {
   constructor(public roster: Roster) { }
 
   ngOnInit(): void {
-    this.roster.getCharacters()
-            .subscribe({
-                next: characters => {
-                    this.characters = characters;
-                }, 
-                error: err => this.errorMessage = err
-            });
+
   }
 
   downloadZip(){
+    this.instruments = this.roster.getSelectedInstruments();
+
     var zip = new JSZip();
 
     var imgFolder = zip.folder("images");
 
-    var totalCount = 0;
-    Array.prototype.forEach.call(this.characters, char => {
-      Array.prototype.forEach.call(char.pics, pic => {
-        totalCount ++;
-      })
-    })
+    let count = 1;
 
-    Array.prototype.forEach.call(this.characters, char => {
-      console.log(char.handle + " is down the zip line!");
-      let count = 0;
-      Array.prototype.forEach.call(char.pics, pic => {
+    const zipArray: any[] = [];
 
-        JSZipUtils.getBinaryContent(pic, function (err:any, data:any) {
-          if (err) {
-            console.log("ERROR ERROR");
-            throw err;
-          }
-          console.log(pic + " picture is down the zip line");
-          imgFolder?.file("image_" + count + ".png", data, { binary: true });
-          count++;
-
-          if (count === totalCount){
-            zip.generateAsync({ type: "blob" })
-            .then(function (content) {
-              FileSaver.saveAs(content, "Images.zip");
-            });
-          }
-        });
-        // console.log(pic + " picture is down the zip line");
-        // imgFolder?.file("file_" + count + ".png", pic, {base64: true});
-        // count++;
+    Array.prototype.forEach.call(this.instruments, char => {
+      Array.prototype.forEach.call(char.images, pic => {
+        zipArray.push(pic);
       });
     });
 
-    
+    // function to read in a list of source zip files and return a merged archive
+    function mergeZips(sources: any) {
+      var zip = new JSZip();
+
+      return readSources(sources)
+          .then(function(data) {
+              return data;
+          });
+}
+
+// generate an array of promises for each zip we're reading in and combine them
+// into a single promise with Promise.all()
+    function readSources(files: any) {
+      return Promise.all(
+          files.map(function(file: any){
+              return readSource(file);
+          })
+      );
+    }
+
+// promise-ified wrapper function to read & load a zip
+    function readSource(file: any) {
+      return new Promise(function(resolve, reject) {
+          JSZipUtils.getBinaryContent(file, function (err: any, data: any) {
+              if (err) {
+                  reject(err);
+              }
+              resolve(data); 
+          });
+      });
+    }
+
+    // example usage:
+    mergeZips(zipArray).then(function(data) {
+      Array.prototype.forEach.call( data, d => {
+        var imgName = ("000000"+count).slice(-4) + ".png";
+        imgFolder?.file(imgName ?? "error_name", d, { binary: true });
+        count++;
+      });
+      
+      zip.generateAsync({type: 'blob'})
+          .then(function(blob){
+            FileSaver.saveAs(blob, "Images.zip");
+          })
+    });
   }
 }

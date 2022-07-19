@@ -1,16 +1,3 @@
 <div>
-    <table class="table table-striped table-bordered table-hover" *ngIf="roster.characters.length">
-        <tbody>
-            <tr *ngFor="let c of characters" style="cursor: pointer;">
-                <td *ngFor="let p of c.pics">
-                    <img 
-                        [src]="p" 
-                        [title]="c.handle" 
-                        [style.width.px]="imageWidth" 
-                        [style.margin.px]="imageMargin">
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <button class="btn btn btn-outline-secondary" label="Download" type="button" (click)="downloadZip()"> Download </button> 
 </div>

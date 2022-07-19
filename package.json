@@ -3,8 +3,12 @@
     "@angular/fire": "^7.3.0",
     "@angular/material": "^13.3.8",
     "@azure/storage-blob": "^12.10.0",
+    "@syncfusion/ej2-angular-inputs": "^20.1.58",
+    "@syncfusion/ej2-base": "^20.1.57",
+    "d3-format": "^3.1.0",
     "file-saver": "^2.0.5",
     "firebase": "^9.8.2",
+    "guid-typescript": "^1.0.9",
     "jszip": "^3.10.0",
     "jszip-utils": "^0.1.0"
   },

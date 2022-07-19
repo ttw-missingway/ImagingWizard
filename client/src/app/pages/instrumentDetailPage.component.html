@@ -1,0 +1,81 @@
+<h1> {{title}} </h1>
+
+
+
+<div>
+    <div class='card-body'
+    *ngIf='instrument'>
+        <div class="row">
+            <div id="notes" class="col-sm-3">
+                <p>{{instrument.id}}</p>
+                <p> Notes </p>
+                <textarea rows="4" class="form-control" [(ngModel)]="notes">{{instrument.notes}}</textarea>
+                <br>
+                <button id="update-instrument" rows="4" class="form-control btn btn-outline-warning" (click)="UpdateInstrument()" >
+                    Update Instrument
+                </button>
+            </div>
+        </div>
+        
+        <br>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Page No.</th>
+                    <th>Pic</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of instrument.images; let i = index" style="cursor: pointer;">
+                    <td>
+                        {{instrument.startingPage + i}}
+                    </td>
+                    <td>
+                        <img 
+                            [src]="p" 
+                            [title]="p" 
+                            [style.width.px]="imageWidth" 
+                            [style.margin.px]="imageMargin">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+    <!-- <table class="table table-striped table-bordered table-hover" *ngIf="instrument.pics.length">
+        <thead>
+            <tr>
+                <th>Page No.</th>
+                <th>Notes</th>
+                <th>Pic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of instrument?.pics" style="cursor: pointer;">
+                <td>
+                    1
+                </td>
+                <td>
+                    <textarea>
+                        Set Notes here.
+                    </textarea>
+                </td>
+                <td>
+                    <img 
+                        [src]="p" 
+                        [title]="p" >
+                </td>
+                <td>
+                    <button class="btn btn-outline-primary">
+                        Update Image Data
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+

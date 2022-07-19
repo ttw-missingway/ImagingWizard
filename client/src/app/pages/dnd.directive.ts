@@ -1,4 +1,4 @@
-import { HostBinding } from '@angular/core';
+import { EventEmitter, HostBinding, Output } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { Directive } from '@angular/core';
 
@@ -8,6 +8,7 @@ import { Directive } from '@angular/core';
 
 export class DndDirective{
     @HostBinding('class.fileover') fileOver: boolean = false;
+    @Output() fileDropped = new EventEmitter<any>();
 
     constructor(){
         
@@ -16,15 +17,13 @@ export class DndDirective{
     @HostListener('dragover', ['$event']) onDragOver(evt: Event){
         evt.preventDefault();
         evt.stopPropagation();
-
-        console.log('Drag Over');
+        this.fileOver = true;
     }
 
     @HostListener('dragleave', ['$event']) public onDragLeave(evt: Event){
         evt.preventDefault();
         evt.stopPropagation();
-
-        console.log('Drag Leave');
+        this.fileOver = false;
     }
 
     @HostListener('drop', ['$event']) public onDrop(evt: DragEvent){
@@ -34,7 +33,7 @@ export class DndDirective{
         const files = evt.dataTransfer?.files;
         if (files != undefined){
             if (files.length > 0) {
-                console.log(`you dropped ${files.length} files`);
+                this.fileDropped.emit(files);
             }
         }  
     }
